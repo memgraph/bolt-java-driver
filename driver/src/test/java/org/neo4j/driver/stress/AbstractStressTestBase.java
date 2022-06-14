@@ -168,7 +168,7 @@ abstract class AbstractStressTestBase<C extends AbstractContext> {
         Throwable firstError = null;
         for (Future<?> future : resultFutures) {
             try {
-                assertNull(future.get(10, SECONDS));
+                assertNull(future.get(10, MINUTES));
             } catch (Throwable error) {
                 firstError = withSuppressed(firstError, error);
             }
