@@ -195,6 +195,7 @@ abstract class AbstractStressTestBase<C extends AbstractContext> {
         Config.ConfigBuilder builder = Config.builder()
                 .withLogging(logging)
                 .withMaxConnectionPoolSize(100)
+                .withMaxTransactionRetryTime(5, MINUTES)
                 .withConnectionAcquisitionTimeout(1, MINUTES);
         return config(builder).build();
     }
