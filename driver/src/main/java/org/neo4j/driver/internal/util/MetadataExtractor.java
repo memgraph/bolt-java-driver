@@ -134,11 +134,7 @@ public class MetadataExtractor {
         if (versionValue == null || versionValue.isNull()) {
             throw new UntrustedServerException("Server provides no product identifier");
         }
-        String serverAgent = versionValue.asString();
-        if (!serverAgent.startsWith("Neo4j/")) {
-            throw new UntrustedServerException(
-                    "Server does not identify as a genuine Neo4j instance: '" + serverAgent + "'");
-        }
+
         return versionValue;
     }
 
