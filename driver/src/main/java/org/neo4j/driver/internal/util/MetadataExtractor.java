@@ -134,7 +134,7 @@ public class MetadataExtractor {
     public static ServerVersion extractNeo4jServerVersion(Map<String, Value> metadata) {
         Value serverValue = extractServer(metadata);
         ServerVersion server = ServerVersion.version(serverValue.asString());
-        
+
         return server;
     }
 
