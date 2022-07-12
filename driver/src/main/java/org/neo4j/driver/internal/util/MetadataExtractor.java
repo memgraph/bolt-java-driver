@@ -134,12 +134,8 @@ public class MetadataExtractor {
     public static ServerVersion extractNeo4jServerVersion(Map<String, Value> metadata) {
         Value serverValue = extractServer(metadata);
         ServerVersion server = ServerVersion.version(serverValue.asString());
-        if (ServerVersion.NEO4J_PRODUCT.equalsIgnoreCase(server.product())) {
-            return server;
-        } else {
-            throw new UntrustedServerException(
-                    "Server does not identify as a genuine Neo4j instance: '" + server.product() + "'");
-        }
+        
+        return server;
     }
 
     public static Value extractServer(Map<String, Value> metadata) {
