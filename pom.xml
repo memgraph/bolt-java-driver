@@ -5,7 +5,7 @@
 
   <groupId>org.memgraph.driver</groupId>
   <artifactId>bolt-java-driver-parent</artifactId>
-  <version>4.4-SNAPSHOT</version>
+  <version>0.4-SNAPSHOT</version>
 
   <packaging>pom</packaging>
   <name>Bolt Protocol Java Driver Project</name>

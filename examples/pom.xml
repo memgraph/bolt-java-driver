@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.memgraph.driver</groupId>
     <artifactId>bolt-java-driver-parent</artifactId>
-    <version>4.4-SNAPSHOT</version>
+    <version>0.4-SNAPSHOT</version>
   </parent>
 
   <groupId>org.memgraph.doc.driver</groupId>
@@ -23,8 +23,8 @@
   <dependencies>
     <!-- Compile dependencies -->
     <dependency>
-      <groupId>org.neo4j.driver</groupId>
-      <artifactId>neo4j-java-driver</artifactId>
+      <groupId>org.memgraph.driver</groupId>
+      <artifactId>bolt-java-driver</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
@@ -38,8 +38,8 @@
 
     <!-- Test dependencies -->
     <dependency>
-      <groupId>org.neo4j.driver</groupId>
-      <artifactId>neo4j-java-driver-slim</artifactId>
+      <groupId>org.memgraph.driver</groupId>
+      <artifactId>bolt-java-driver-slim</artifactId>
       <version>${project.version}</version>
       <type>test-jar</type>
       <scope>test</scope>

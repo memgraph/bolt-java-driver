@@ -7,7 +7,7 @@
     <parent>
         <artifactId>bolt-java-driver-parent</artifactId>
         <groupId>org.memgraph.driver</groupId>
-        <version>4.4-SNAPSHOT</version>
+        <version>0.4-SNAPSHOT</version>
     </parent>
 
     <artifactId>testkit-backend</artifactId>
