@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>neo4j-java-driver-parent</artifactId>
-        <groupId>org.neo4j.driver</groupId>
+        <artifactId>bolt-java-driver-parent</artifactId>
+        <groupId>org.memgraph.driver</groupId>
         <version>4.4-SNAPSHOT</version>
     </parent>
 
     <artifactId>testkit-backend</artifactId>
 
-    <name>Neo4j Java Driver Testkit Backend</name>
+    <name>Bolt Protocol Java Driver Testkit Backend</name>
     <description>Integration component for use with Testkit</description>
 
     <properties>
@@ -21,8 +21,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.neo4j.driver</groupId>
-            <artifactId>neo4j-java-driver-slim</artifactId>
+            <groupId>org.memgraph.driver</groupId>
+            <artifactId>bolt-java-driver-slim</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

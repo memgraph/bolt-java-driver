@@ -4,20 +4,20 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.neo4j.driver</groupId>
-    <artifactId>neo4j-java-driver-parent</artifactId>
+    <groupId>org.memgraph.driver</groupId>
+    <artifactId>bolt-java-driver-parent</artifactId>
     <version>4.4-SNAPSHOT</version>
     <relativePath>..</relativePath>
   </parent>
 
-  <artifactId>neo4j-java-driver</artifactId>
+  <artifactId>bolt-java-driver</artifactId>
 
   <packaging>jar</packaging>
-  <name>Neo4j Java Driver</name>
-  <description>Access to the Neo4j graph database through Java</description>
+  <name>Bolt Protocol Java Driver</name>
+  <description>Access to the Graph databases supporting Bolt Protocol through Java</description>
 
   <properties>
-    <moduleName>org.neo4j.driver</moduleName>
+    <moduleName>org.memgraph.driver</moduleName>
     <rootDir>${project.basedir}/..</rootDir>
     <maven.deploy.skip>false</maven.deploy.skip>
   </properties>
@@ -25,8 +25,8 @@
   <dependencies>
     <!-- The original driver that will be repackaged. -->
     <dependency>
-      <groupId>org.neo4j.driver</groupId>
-      <artifactId>neo4j-java-driver-slim</artifactId>
+      <groupId>org.memgraph.driver</groupId>
+      <artifactId>bolt-java-driver-slim</artifactId>
       <version>${project.version}</version>
       <optional>true</optional>
     </dependency>

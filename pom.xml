@@ -3,14 +3,14 @@
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.neo4j.driver</groupId>
-  <artifactId>neo4j-java-driver-parent</artifactId>
+  <groupId>org.memgraph.driver</groupId>
+  <artifactId>bolt-java-driver-parent</artifactId>
   <version>4.4-SNAPSHOT</version>
 
   <packaging>pom</packaging>
-  <name>Neo4j Java Driver Project</name>
-  <description>A project for building a Java driver for the Neo4j Bolt protocol.</description>
-  <url>https://github.com/neo4j/neo4j-java-driver</url>
+  <name>Bolt Protocol Java Driver Project</name>
+  <description>A project for building a Java driver for Bolt protocol used by graph databases.</description>
+  <url>https://github.com/memgraph/bolt-java-driver</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -71,20 +71,10 @@
     </license>
   </licenses>
 
-  <developers>
-    <developer>
-      <id>neo4j</id>
-      <name>The Neo4j Team</name>
-      <url>http://www.neo4j.com/</url>
-      <organization>Neo4j Sweden AB</organization>
-      <organizationUrl>http://www.neo4j.com/</organizationUrl>
-    </developer>
-  </developers>
-
   <scm>
-    <connection>scm:git:git://github.com/neo4j/neo4j-java-driver.git</connection>
-    <developerConnection>scm:git:git@github.com:neo4j/neo4j-java-driver.git</developerConnection>
-    <url>https://github.com/neo4j/neo4j-java-driver</url>
+    <connection>scm:git:git://github.com/memgraph/bolt-java-driver.git</connection>
+    <developerConnection>scm:git:git@github.com:memgraph/bolt-java-driver.git</developerConnection>
+    <url>https://github.com/memgraph/bolt-java-driver</url>
   </scm>
 
   <dependencyManagement>
@@ -427,48 +417,6 @@
           </dependencies>
         </plugin>
         <plugin>
-          <groupId>org.neo4j.build.plugins</groupId>
-          <artifactId>licensing-maven-plugin</artifactId>
-          <version>1.7.11</version>
-          <configuration>
-            <failIfDisliked>true</failIfDisliked>
-            <failIfMissing>true</failIfMissing>
-            <plainTextReport>true</plainTextReport>
-            <prependText>${rootDir}/build/notice-asl-prefix.txt</prependText>
-            <excludedGroups>
-              ^((org.neo4j.driver){1})$
-            </excludedGroups>
-            <includedScopes>compile</includedScopes>
-          </configuration>
-          <executions>
-            <execution>
-              <id>list-all-licenses</id>
-              <phase>compile</phase>
-              <goals>
-                <goal>check</goal>
-              </goals>
-              <configuration>
-                <licensingRequirementFiles>
-                  <licensingRequirementFile>licensing/licensing-requirements-base.xml</licensingRequirementFile>
-                </licensingRequirementFiles>
-                <thirdPartyLicensingFilename>${project.artifactId}-${project.version}-NOTICE.txt
-                </thirdPartyLicensingFilename>
-                <checkExistingNoticeFile>${project.build.directory}/../NOTICE.txt</checkExistingNoticeFile>
-                <listPrependText>licensing/list-prefix.txt</listPrependText>
-                <listReport>${project.artifactId}-${project.version}-LICENSES.txt</listReport>
-                <checkExistingLicensesFile>${project.build.directory}/../LICENSES.txt</checkExistingLicensesFile>
-              </configuration>
-            </execution>
-          </executions>
-          <dependencies>
-            <dependency>
-              <groupId>org.neo4j.build</groupId>
-              <artifactId>build-resources</artifactId>
-              <version>${build-resources.version}</version>
-            </dependency>
-          </dependencies>
-        </plugin>
-        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
           <version>2.7</version>
@@ -480,10 +428,6 @@
       <plugin>
         <groupId>com.mycila</groupId>
         <artifactId>license-maven-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.neo4j.build.plugins</groupId>
-        <artifactId>licensing-maven-plugin</artifactId>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

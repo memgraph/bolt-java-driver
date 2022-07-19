@@ -4,17 +4,17 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.neo4j.driver</groupId>
-    <artifactId>neo4j-java-driver-parent</artifactId>
+    <groupId>org.memgraph.driver</groupId>
+    <artifactId>bolt-java-driver-parent</artifactId>
     <version>4.4-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.neo4j.doc.driver</groupId>
-  <artifactId>neo4j-java-driver-examples</artifactId>
+  <groupId>org.memgraph.doc.driver</groupId>
+  <artifactId>bolt-java-driver-examples</artifactId>
 
   <packaging>jar</packaging>
-  <name>Neo4j Java Driver Examples</name>
-  <description>Examples of using the Neo4j graph database through Java</description>
+  <name>Bolt Protocol Java Driver Examples</name>
+  <description>Examples of using a graph database supporting Bolt Protocol through Java</description>
 
   <properties>
     <rootDir>${project.basedir}/..</rootDir>

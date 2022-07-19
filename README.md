@@ -1,27 +1,15 @@
-# Neo4j Java Driver
+# Bolt Protocol Java Driver
 
-This repository holds the official Java Driver for Neo4j.
+This repository holds the Java Driver for the Bolt Protocol (developed by Neo4j). It is forked 
+by Memgraph to also support other graph databases which use Bolt Protocol.
 
 It works with both single instance and clustered databases.
 
 Network communication is handled using [Bolt Protocol](https://7687.org/).
 
-## Supported Driver Series
-
-| Driver Series | Supported Java Runtime versions | Status | Changelog |
-| --- | --- | --- | --- |
-| 4.4 | 8, 11 | Primary development branch. | [link](https://github.com/neo4j/neo4j-java-driver/wiki/4.4-changelog) |
-| 4.3 | 8, 11 | Maintenance. | [link](https://github.com/neo4j/neo4j-java-driver/wiki/4.3-changelog) |
-| 4.2 | 8, 11 | Maintenance. | [link](https://github.com/neo4j/neo4j-java-driver/wiki/4.2-changelog) |
-| 4.1 | 8, 11 | Maintenance. | [link](https://github.com/neo4j/neo4j-java-driver/wiki/4.1-changelog) |
-
-## Server Compatibility
-
-The compatibility with Neo4j Server versions is documented in the [Neo4j Knowledge Base](https://neo4j.com/developer/kb/neo4j-supported-versions/).
-
 ## Usage
 
-This section provides general information for engineers who are building Neo4j-backed applications.
+This section provides general information for engineers who are building graph database backed applications.
 
 ### The `pom.xml` file
 
@@ -29,8 +17,8 @@ The driver is distributed exclusively via [Maven](https://search.maven.org/).
 To use the driver in your Maven project, include the following within your `pom.xml` file:
 ```xml
 <dependency>
-    <groupId>org.neo4j.driver</groupId>
-    <artifactId>neo4j-java-driver</artifactId>
+    <groupId>org.memgraph.driver</groupId>
+    <artifactId>bolt-java-driver</artifactId>
     <version>x.y.z</version>
 </dependency>
 ```
@@ -38,18 +26,18 @@ Here, `x.y.z` will need to be replaced with the appropriate driver version.
 It is generally recommended to use the latest driver version wherever possible.
 This ensures access to new features and recent bug fixes.
 All available versions of this driver can be found at
-[Maven Central](https://mvnrepository.com/artifact/org.neo4j.driver/neo4j-java-driver) or
-[Releases](https://github.com/neo4j/neo4j-java-driver/releases).
+[Maven Central](https://mvnrepository.com/artifact/org.memgraph.driver/bolt-java-driver) or
+[Releases](https://github.com/memgraph/bolt-java-driver/releases).
 
 ### Java Module System
 
-The automatic module name of the driver for the Java Module System is `org.neo4j.driver`.
+The automatic module name of the driver for the Java Module System is `org.memgraph.driver`.
 
 ### Example
 
 To run a simple query, the following can be used:
 ```java
-Driver driver = GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "PasSW0rd"));
+Driver driver = GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("memgraph", "PasSW0rd"));
 try (Session session = driver.session()) {
     Result result = session.run("CREATE (n) RETURN n");
 }
@@ -68,7 +56,7 @@ As a result of this design, it is expensive to create and close a ``Driver`` obj
 ``Driver`` objects are thread-safe, but ``Session`` and ``Transaction`` objects should only be used by a single thread.
 
 ### Further reading
-Check out our [Wiki](https://github.com/neo4j/neo4j-java-driver/wiki) for detailed and most up-to-date manuals, driver API documentations, changelogs, etc.
+Check out our [Wiki](https://github.com/memgraph/bolt-java-driver/wiki) for detailed and most up-to-date manuals, driver API documentations, changelogs, etc.
 
 ### Bug Report
 If you encounter any bugs while using this driver, please follow the instructions in our [Contribution Guide](https://github.com/neo4j/neo4j-java-driver/blob/1.6/CONTRIBUTING.md#need-to-raise-an-issue)
@@ -80,7 +68,7 @@ Also include any error stacktraces and a code snippet to reproduce the error if 
 ## For Driver Engineers
 
 This section targets users who would like to compile the driver source code on their own machine for the purpose of, for example, contributing a PR.
-Before contributing to this project, please take a few minutes to read our [Contribution Guide](https://github.com/neo4j/neo4j-java-driver/blob/1.6/CONTRIBUTING.md#want-to-contribute).
+Before contributing to this project, please take a few minutes to read our [Contribution Guide](https://github.com/memgraph/bolt-java-driver/blob/1.6/CONTRIBUTING.md#want-to-contribute).
 
 ### Java Version
 
@@ -143,11 +131,11 @@ Prerequisites:
 Clone Testkit and run as follows:
 
 ```
-git clone git@github.com:neo4j/neo4j-java-driver.git 
+git clone git@github.com:memgraph/bolt-java-driver.git 
 git clone git@github.com:neo4j-drivers/testkit.git
 cd testkit
 TEST_DRIVER_NAME=java \
-TEST_DRIVER_REPO=`realpath ../neo4j-java-driver` \
+TEST_DRIVER_REPO=`realpath ../bolt-java-driver` \
 TEST_DOCKER_RMI=true \
 python3 main.py --tests UNIT_TESTS --configs 4.3-enterprise
 ```
@@ -156,7 +144,7 @@ To run additional Testkit test, specify `TESTKIT_TESTS`:
 
 ```
 TEST_DRIVER_NAME=java \
-TEST_DRIVER_REPO=`realpath ../neo4j-java-driver` \
+TEST_DRIVER_REPO=`realpath ../bolt-java-driver` \
 TEST_DOCKER_RMI=true \
 python3 main.py --tests TESTKIT_TESTS UNIT_TESTS --configs 4.3-enterprise
 ````

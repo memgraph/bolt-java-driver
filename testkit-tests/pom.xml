@@ -4,15 +4,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.neo4j.driver</groupId>
-        <artifactId>neo4j-java-driver-parent</artifactId>
+        <groupId>org.memgraph.driver</groupId>
+        <artifactId>bolt-java-driver-parent</artifactId>
         <version>4.4-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
 
     <artifactId>testkit-tests</artifactId>
 
-    <name>Neo4j Java Driver Testkit Tests</name>
+    <name>Bolt Protocol Java Driver Testkit Tests</name>
     <description>Tests this driver using Testkit.</description>
 
     <properties>
