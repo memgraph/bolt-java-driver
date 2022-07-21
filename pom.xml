@@ -62,7 +62,7 @@
     <module>bundle</module>
     <module>examples</module>
     <module>testkit-backend</module>
-    <module>testkit-tests</module>
+    <!-- <module>testkit-tests</module> -->
   </modules>
 
   <licenses>
