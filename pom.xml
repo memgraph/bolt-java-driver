@@ -3,9 +3,9 @@
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.memgraph.driver</groupId>
+  <groupId>org.memgraph</groupId>
   <artifactId>bolt-java-driver-parent</artifactId>
-  <version>0.4-SNAPSHOT</version>
+  <version>0.4</version>
 
   <packaging>pom</packaging>
   <name>Bolt Protocol Java Driver Project</name>

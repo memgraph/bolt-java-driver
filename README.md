@@ -17,7 +17,7 @@ The driver is distributed exclusively via [Maven](https://search.maven.org/).
 To use the driver in your Maven project, include the following within your `pom.xml` file:
 ```xml
 <dependency>
-    <groupId>org.memgraph.driver</groupId>
+    <groupId>org.memgraph</groupId>
     <artifactId>bolt-java-driver</artifactId>
     <version>x.y.z</version>
 </dependency>
