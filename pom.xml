@@ -5,7 +5,7 @@
 
   <groupId>org.memgraph</groupId>
   <artifactId>bolt-java-driver-parent</artifactId>
-  <version>0.4</version>
+  <version>0.4-SNAPSHOT</version>
 
   <packaging>pom</packaging>
   <name>Bolt Protocol Java Driver Project</name>
@@ -71,6 +71,15 @@
       <url>http://www.apache.org/licenses/LICENSE-2.0</url>
     </license>
   </licenses>
+
+ <developers>
+    <developer>
+      <name>Josip Mrden</name>
+      <email>josip.mrden@memgraph.io</email>
+      <organization>Memgraph</organization>
+      <organizationUrl>https://memgraph.com</organizationUrl>
+    </developer>
+  </developers>
 
   <scm>
     <connection>scm:git:git://github.com/memgraph/bolt-java-driver.git</connection>
