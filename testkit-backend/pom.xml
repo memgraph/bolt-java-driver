@@ -7,7 +7,7 @@
     <parent>
         <artifactId>bolt-java-driver-parent</artifactId>
         <groupId>org.memgraph</groupId>
-        <version>0.4</version>
+        <version>0.4.2-SNAPSHOT</version>
     </parent>
 
     <artifactId>testkit-backend</artifactId>
@@ -22,7 +22,7 @@
     <dependencies>
         <dependency>
             <groupId>org.memgraph</groupId>
-            <artifactId>bolt-java-driver-slim</artifactId>
+            <artifactId>bolt-java-driver</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

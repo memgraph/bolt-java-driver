@@ -6,11 +6,11 @@
   <parent>
     <groupId>org.memgraph</groupId>
     <artifactId>bolt-java-driver-parent</artifactId>
-    <version>0.4</version>
+    <version>0.4.3</version>
     <relativePath>..</relativePath>
   </parent>
 
-  <artifactId>bolt-java-driver</artifactId>
+  <artifactId>bolt-java-driver-all</artifactId>
 
   <packaging>jar</packaging>
   <name>Bolt Protocol Java Driver</name>
@@ -26,7 +26,7 @@
     <!-- The original driver that will be repackaged. -->
     <dependency>
       <groupId>org.memgraph</groupId>
-      <artifactId>bolt-java-driver-slim</artifactId>
+      <artifactId>bolt-java-driver</artifactId>
       <version>${project.version}</version>
       <optional>true</optional>
     </dependency>

@@ -5,7 +5,7 @@
 
   <groupId>org.memgraph</groupId>
   <artifactId>bolt-java-driver-parent</artifactId>
-  <version>0.4-SNAPSHOT</version>
+  <version>0.4.3</version>
 
   <packaging>pom</packaging>
   <name>Bolt Protocol Java Driver Project</name>
@@ -61,8 +61,8 @@
     <module>driver</module>
     <module>bundle</module>
     <module>examples</module>
-    <module>testkit-backend</module>
-    <module>testkit-tests</module>
+    <!-- <module>testkit-backend</module> -->
+    <!-- <module>testkit-tests</module> -->
   </modules>
 
   <licenses>
@@ -72,7 +72,7 @@
     </license>
   </licenses>
 
- <developers>
+  <developers>
     <developer>
       <name>Josip Mrden</name>
       <email>josip.mrden@memgraph.io</email>
@@ -204,28 +204,6 @@
   </dependencyManagement>
 
   <profiles>
-    <!-- If a revision has not been explicitly set, sort it out by looking at git metadata -->
-    <profile>
-      <id>determine-revision</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-        <property>
-          <name>!build.revision</name>
-        </property>
-      </activation>
-      <properties>
-        <build.revision>${git.commit.id.abbrev}</build.revision>
-      </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>pl.project13.maven</groupId>
-            <artifactId>git-commit-id-plugin</artifactId>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
     <profile>
       <id>java9</id>
       <activation>
@@ -251,17 +229,6 @@
       </properties>
     </profile>
   </profiles>
-
-  <distributionManagement>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-    <repository>
-      <id>ossrh</id>
-      <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-    </repository>
-  </distributionManagement>
 
   <build>
     <pluginManagement>
@@ -299,23 +266,13 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-source-plugin</artifactId>
-          <version>3.0.1</version>
+          <version>3.2.1</version>
           <executions>
             <execution>
               <id>attach-sources</id>
               <goals>
-                <goal>jar</goal>
+                <goal>jar-no-fork</goal>
               </goals>
-              <configuration>
-                <archive>
-                  <manifestEntries>
-                    <Bundle-Name>${project.name} (Source)</Bundle-Name>
-                    <Bundle-SymbolicName>${bundle.name}.source</Bundle-SymbolicName>
-                    <Bundle-Version>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}.${build.timestamp}</Bundle-Version>
-                    <Eclipse-SourceBundle>${bundle.name};version="${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}.${build.timestamp}";roots:="."</Eclipse-SourceBundle>
-                  </manifestEntries>
-                </archive>
-              </configuration>
             </execution>
           </executions>
         </plugin>
@@ -442,6 +399,48 @@
           <artifactId>maven-resources-plugin</artifactId>
           <version>2.7</version>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.4.0</version>
+          <executions>
+            <execution>
+              <id>attach-javadocs</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>3.0.1</version>
+          <executions>
+            <execution>
+              <id>sign-artifacts</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>sign</goal>
+              </goals>
+              <configuration>
+                <keyname>${gpg.keyname}</keyname>
+                <passphraseServerId>${gpg.keyname}</passphraseServerId>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.sonatype.plugins</groupId>
+          <artifactId>nexus-staging-maven-plugin</artifactId>
+          <version>${nexus.staging.maven.plugin.version}</version>
+          <extensions>true</extensions>
+          <configuration>
+            <serverId>ossrh</serverId>
+            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+            <autoReleaseAfterClose>false</autoReleaseAfterClose>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
 
@@ -458,65 +457,6 @@
           <showDeprecation>true</showDeprecation>
           <showWarnings>true</showWarnings>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <version>3.0.1</version>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.0.1</version>
-        <configuration>
-          <charset>UTF-8</charset>
-          <docencoding>UTF-8</docencoding>
-          <encoding>UTF-8</encoding>
-          <top><![CDATA[
-            <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css">
-            <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
-            <script>hljs.initHighlightingOnLoad();</script>
-          ]]>          </top>
-          <bottom>
-            <![CDATA[
-                    <script>
-                    if (typeof useModuleDirectories !== 'undefined') {
-                      useModuleDirectories = false;
-                    }
-                    </script>
-                ]]>
-          </bottom>
-          <!-- Required for Java 8u121 or later. See https://github.com/neo4j/neo4j-java-driver/pull/318  -->
-          <additionalOptions>--allow-script-in-comments</additionalOptions>
-          <sourceFileIncludes>
-            <sourceFileInclude>org/neo4j/driver/**/*.java</sourceFileInclude>
-          </sourceFileIncludes>
-          <excludePackageNames>org.neo4j.driver.internal</excludePackageNames>
-          <overview>${rootDir}/build/javadoc/overview.html</overview>
-        </configuration>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>aggregate</id>
-            <goals>
-              <goal>aggregate</goal>
-            </goals>
-            <phase>site</phase>
-          </execution>
-        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -582,31 +522,17 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
       </plugin>
-      <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>${nexus.staging.maven.plugin.version}</version>
-        <extensions>true</extensions>
-        <configuration>
-          <serverId>ossrh</serverId>
-          <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-          <autoReleaseAfterClose>true</autoReleaseAfterClose>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <version>1.5</version>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
 </project>

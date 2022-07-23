@@ -30,3 +30,5 @@ venv
 testkit-backend/bin/
 testkit/CAs/
 testkit/CustomCAs/
+
+**/pom.xml.versionsBackup
