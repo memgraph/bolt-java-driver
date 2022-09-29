@@ -6,14 +6,14 @@
     <parent>
         <groupId>org.memgraph</groupId>
         <artifactId>bolt-java-driver-parent</artifactId>
-        <version>0.4.3</version>
+        <version>0.4.4</version>
         <relativePath>..</relativePath>
     </parent>
 
     <artifactId>bolt-java-driver-all</artifactId>
 
     <packaging>jar</packaging>
-    <name>Bolt Protocol Java Driver</name>
+    <name>Bolt Protocol Java Driver All</name>
     <description>Access to the Graph databases supporting Bolt Protocol through Java</description>
 
     <properties>
