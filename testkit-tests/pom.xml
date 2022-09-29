@@ -70,7 +70,8 @@
                                     </wait>
                                     <env>
                                         <TESTKIT_URL>${testkit.url}</TESTKIT_URL>
-                                        <TESTKIT_CHECKOUT_PATH>${project.build.directory}/testkit</TESTKIT_CHECKOUT_PATH>
+                                        <TESTKIT_CHECKOUT_PATH>${project.build.directory}/testkit
+                                        </TESTKIT_CHECKOUT_PATH>
                                         <TESTKIT_VERSION>${testkit.version}</TESTKIT_VERSION>
                                         <TESTKIT_ARGS>${testkit.args}</TESTKIT_ARGS>
                                         <TEST_DRIVER_NAME>java</TEST_DRIVER_NAME>
@@ -130,7 +131,8 @@
                                         <run>
                                             <containerNamePattern>${testkit.async.name.pattern}</containerNamePattern>
                                             <env>
-                                                <TESTKIT_CHECKOUT_PATH>${project.build.directory}/testkit-async</TESTKIT_CHECKOUT_PATH>
+                                                <TESTKIT_CHECKOUT_PATH>${project.build.directory}/testkit-async
+                                                </TESTKIT_CHECKOUT_PATH>
                                                 <TEST_BACKEND_SERVER>async</TEST_BACKEND_SERVER>
                                             </env>
                                             <log>
@@ -156,12 +158,16 @@
                                         <run>
                                             <containerNamePattern>${testkit.rx.name.pattern}</containerNamePattern>
                                             <env>
-                                                <TESTKIT_CHECKOUT_PATH>${project.build.directory}/testkit-rx</TESTKIT_CHECKOUT_PATH>
+                                                <TESTKIT_CHECKOUT_PATH>${project.build.directory}/testkit-rx
+                                                </TESTKIT_CHECKOUT_PATH>
                                                 <TEST_BACKEND_SERVER>reactive</TEST_BACKEND_SERVER>
                                                 <!-- Excludes 3.5 -->
-                                                <TESTKIT_ARGS>--configs 4.0-enterprise-neo4j 4.1-enterprise-neo4j 4.2-community-bolt 4.2-community-neo4j
-                                                    4.2-enterprise-bolt 4.2-enterprise-neo4j 4.2-enterprise-cluster-neo4j 4.3-community-bolt 4.3-community-neo4j
-                                                    4.3-enterprise-bolt 4.3-enterprise-neo4j 4.3-enterprise-cluster-neo4j ${testkit.args}
+                                                <TESTKIT_ARGS>--configs 4.0-enterprise-neo4j 4.1-enterprise-neo4j
+                                                    4.2-community-bolt 4.2-community-neo4j
+                                                    4.2-enterprise-bolt 4.2-enterprise-neo4j
+                                                    4.2-enterprise-cluster-neo4j 4.3-community-bolt 4.3-community-neo4j
+                                                    4.3-enterprise-bolt 4.3-enterprise-neo4j
+                                                    4.3-enterprise-cluster-neo4j ${testkit.args}
                                                 </TESTKIT_ARGS>
                                             </env>
                                             <log>
@@ -181,6 +187,22 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
                 </plugin>
             </plugins>
         </pluginManagement>
