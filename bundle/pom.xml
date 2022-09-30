@@ -6,8 +6,7 @@
     <parent>
         <groupId>org.memgraph</groupId>
         <artifactId>bolt-java-driver-parent</artifactId>
-        <version>0.4.4</version>
-        <relativePath>..</relativePath>
+        <version>0.4.7</version>
     </parent>
 
     <artifactId>bolt-java-driver-all</artifactId>
@@ -106,17 +105,46 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- deployment  -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.4.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
@@ -141,7 +169,6 @@
                         </manifest>
                         <manifestEntries>
                             <!-- This is used to programmatically determine the driver version -->
-                            <Implementation-Version>${project.version}-${build.revision}</Implementation-Version>
                             <!-- Stable module name for JDK9 automatic modules -->
                             <Automatic-Module-Name>${moduleName}</Automatic-Module-Name>
                         </manifestEntries>
