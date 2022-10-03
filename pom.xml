@@ -60,9 +60,9 @@
     <modules>
         <module>driver</module>
         <module>bundle</module>
-        <!--<module>examples</module>-->
-        <!--<module>testkit-ackend</module>-->
-        <!--<module>testkit-tests</module>-->
+        <module>examples</module>
+        <module>testkit-backend</module>
+        <module>testkit-tests</module>
     </modules>
 
     <licenses>
