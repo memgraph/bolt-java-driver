@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.memgraph</groupId>
         <artifactId>bolt-java-driver-parent</artifactId>
-        <version>0.4.7</version>
+        <version>0.4.8-SNAPSHOT</version>
     </parent>
 
     <artifactId>bolt-java-driver</artifactId>
@@ -124,6 +124,7 @@
                         </manifest>
                         <manifestEntries>
                             <!-- This is used to programmatically determine the driver version -->
+                            <Implementation-Version>${project.version}-${build.revision}</Implementation-Version>
                             <!-- Stable module name for JDK9 automatic modules -->
                             <Automatic-Module-Name>${moduleName}</Automatic-Module-Name>
                         </manifestEntries>
